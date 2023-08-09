@@ -7,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 Widget MyButton({
   required String title,
   required VoidCallback ontap,
+  bool loading= false,
 }){
   return  GestureDetector(
   onTap: ontap,
@@ -18,7 +19,8 @@ Widget MyButton({
         borderRadius: BorderRadius.circular(20),
       ),
       child: Center(
-        child: Text(title,style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
+        child:loading ? CircularProgressIndicator(color: Colors.white,):
+        Text(title,style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
       ),
     ),
   );

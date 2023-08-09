@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+import 'splash Screen.dart';
 import 'startPage.dart';
 import 'enterNumber.dart';
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:const StartPage(),
+      home:const splashScreen(),
     );
   }
 }

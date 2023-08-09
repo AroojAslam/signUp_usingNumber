@@ -61,15 +61,21 @@ class _VerifyCodeState extends State<VerifyCode> {
                 ),
                 const  SizedBox(height: 30,),
                 MyButton(title: 'Verify',ontap: () async {
+
                if(formKey.currentState!.validate()){
+                 setState(() {
+                   loading =true;
+                 });
                  final crendital =PhoneAuthProvider.credential(
                      verificationId: widget.verificationID,
                      smsCode: codeController.text.toString());
                  try{
                    await auth.signInWithCredential(crendital);
                    Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(),));
+                   loading= false;
                  }catch(e){
                    toastmessage(error: e.toString());
+                   loading= false;
 
                  }
                }

@@ -58,18 +58,24 @@ class _EnterNumberState extends State<EnterNumber> {
             const  SizedBox(height: 30,),
               MyButton(title: 'Next',ontap: (){
                 if(formKey.currentState!.validate())
-               {
+               {setState(() {
+                 loading =true;
+               });
                  auth.verifyPhoneNumber(
                      phoneNumber: numberController.text,
                      verificationCompleted: (_){},
                      verificationFailed: (e){
                        toastmessage(error: e.toString());
+                       loading =false;
                      },
                      codeSent: (String verificationID, int? token){
-                       Navigator.push(context, MaterialPageRoute(builder: (context) => VerifyCode(verificationID:verificationID ),));
+                       Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                           VerifyCode(verificationID:verificationID ),));
+                       loading =false;
                      },
                      codeAutoRetrievalTimeout: (e){
                        toastmessage(error: e.toString());
+                       loading =false;
                      });
                }
 
